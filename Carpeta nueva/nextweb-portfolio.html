@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NextWeb — Sitios web a la medida</title>
+<style>
+  :root{
+    --ink:#0d1b2a;
+    --deep:#13294b;
+    --blue:#2f6fed;
+    --blue-light:#e8f0ff;
+    --paper:#f7f9fc;
+    --line:#dbe4f3;
+    --muted:#5b6b85;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.5;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  header{
+    position:sticky;top:0;background:rgba(247,249,252,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    z-index:10;
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem;}
+  .logo-mark{
+    width:30px;height:30px;border-radius:8px;
+    background:linear-gradient(135deg,var(--blue),var(--deep));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:0.85rem;font-weight:800;
+  }
+  .nav-links{display:flex;gap:28px;font-size:0.95rem;color:var(--muted);}
+  .nav-links a:hover{color:var(--blue);}
+  .nav-cta{
+    background:var(--blue);color:#fff;padding:10px 20px;border-radius:8px;
+    font-size:0.9rem;font-weight:600;
+  }
+  .menu-toggle{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--ink);}
+
+  .hero{padding:88px 0 64px;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;}
+  .eyebrow{color:var(--blue);font-weight:600;font-size:0.92rem;margin-bottom:14px;}
+  h1{font-size:2.7rem;line-height:1.12;letter-spacing:-0.01em;margin-bottom:18px;}
+  h1 span{color:var(--blue);}
+  .hero p{color:var(--muted);font-size:1.08rem;max-width:480px;margin-bottom:28px;}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{padding:13px 24px;border-radius:8px;font-weight:600;font-size:0.95rem;display:inline-block;}
+  .btn-primary{background:var(--blue);color:#fff;}
+  .btn-outline{border:1px solid var(--line);color:var(--ink);}
+
+  .hero-visual{
+    background:linear-gradient(160deg,var(--deep) 0%, #0a1830 100%);
+    border-radius:16px;padding:26px;position:relative;overflow:hidden;
+    min-height:280px;
+  }
+  .browser-frame{
+    background:#0f1f38;border-radius:10px;padding:14px;
+    border:1px solid rgba(255,255,255,0.08);
+  }
+  .browser-dots{display:flex;gap:6px;margin-bottom:12px;}
+  .browser-dots span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.25);}
+  .code-line{height:10px;border-radius:4px;background:rgba(255,255,255,0.12);margin-bottom:8px;}
+  .code-line.short{width:55%;}
+  .code-line.blue{background:var(--blue);opacity:0.55;width:35%;}
+
+  .stats-strip{
+    display:flex;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:#fff;
+  }
+  .stat{flex:1;text-align:center;padding:28px 12px;border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat b{display:block;font-size:1.7rem;color:var(--deep);}
+  .stat span{color:var(--muted);font-size:0.85rem;}
+
+  section{padding:72px 0;}
+  .section-head{max-width:520px;margin-bottom:40px;}
+  .section-head h2{font-size:1.9rem;letter-spacing:-0.01em;margin-bottom:12px;}
+  .section-head p{color:var(--muted);}
+
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .service-card{
+    background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px;
+  }
+  .service-icon{
+    width:42px;height:42px;border-radius:10px;background:var(--blue-light);
+    display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+    color:var(--blue);font-size:1.2rem;
+  }
+  .service-card h3{font-size:1.08rem;margin-bottom:8px;}
+  .service-card p{color:var(--muted);font-size:0.92rem;}
+
+  .work{background:var(--deep);color:#fff;}
+  .work .section-head p{color:#b9c6e0;}
+  .work-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .work-item{
+    display:block;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+    border-radius:12px;padding:22px;transition:background 0.2s, border-color 0.2s;
+  }
+  .work-item:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.25);}
+  .work-thumb{
+    height:110px;border-radius:8px;margin-bottom:16px;
+    background:linear-gradient(135deg,var(--blue),transparent);
+    opacity:0.8;
+  }
+  .work-item h4{font-size:1rem;margin-bottom:6px;}
+  .work-item span{color:#9fb0d0;font-size:0.85rem;}
+
+  .contact{
+    background:#fff;border:1px solid var(--line);border-radius:16px;
+    padding:48px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;
+    margin:0 24px;
+  }
+  .contact h2{font-size:1.5rem;margin-bottom:8px;}
+  .contact p{color:var(--muted);}
+
+  footer{padding:36px 0;border-top:1px solid var(--line);color:var(--muted);font-size:0.85rem;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+
+  @media (max-width:760px){
+    .nav-links,.nav-cta{display:none;}
+    .menu-toggle{display:block;}
+    .hero-grid,.services{grid-template-columns:1fr;}
+    .work-grid{grid-template-columns:1fr 1fr;}
+    h1{font-size:2.1rem;}
+    .stats-strip{flex-wrap:wrap;}
+    .stat{flex:1 1 50%;border-bottom:1px solid var(--line);}
+    .contact{grid-template-columns:1fr;text-align:center;margin:0 16px;padding:32px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo"><div class="logo-mark">NW</div>NextWeb</div>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#trabajo">Trabajo</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a href="#contacto" class="nav-cta">Contáctanos</a>
+    <button class="menu-toggle">☰</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Desarrollo web a la medida</div>
+      <h1>Sitios web que hacen crecer <span>tu negocio</span></h1>
+      <p>Diseñamos y programamos sitios rápidos, responsivos y hechos desde cero — sin plantillas, con código propio y pensado para tus resultados.</p>
+      <div class="btn-row">
+        <a href="#contacto" class="btn btn-primary">Solicitar cotización</a>
+        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
+      </div>
+    </div>
+    <div class="hero-visual" style="
+      background-image:url('ChatGPT\ Image\ 26\ sept\ 2026\,\ 19_54_08.png');
+      background-size:cover;
+      background-position:center;
+    "></div>
+</section>
+
+<div class="stats-strip">
+  <div class="wrap" style="display:flex;width:100%;">
+    <div class="stat"><b>5+</b><span>años programando</span></div>
+    <div class="stat"><b>100%</b><span>código a la medida</span></div>
+    <div class="stat"><b>48h</b><span>tiempo de respuesta</span></div>
+  </div>
+</div>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Servicios</h2>
+      <p>Todo lo que necesitas para tener presencia web sólida, desde cero.</p>
+    </div>
+    <div class="services">
+      <div class="service-card">
+        <div class="service-icon">◧</div>
+        <h3>Diseño web</h3>
+        <p>Interfaces modernas y responsivas, pensadas para tu marca y tus usuarios.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⌘</div>
+        <h3>Desarrollo web</h3>
+        <p>HTML, CSS y JavaScript a la medida, sin plantillas ni atajos.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">▤</div>
+        <h3>Bases de datos</h3>
+        <p>Formularios, registros de usuarios y paneles conectados a tu sitio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="trabajo">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Proyectos de ejemplo</h2>
+      <p>Una muestra del tipo de sitios que puedo construir para tu negocio.</p>
+    </div>
+    <div class="work-grid">
+      <a href="hotel.html" class="work-item">
+        <div class="work-thumb" style="background-image:url('hotel.png'); background-size:cover; background-position:center;"></div>
+        <h4>Hotel boutique</h4>
+        <span>Sitio de reservas y habitaciones</span>
+      </a>
+      <a href="cafeteria.html" class="work-item">
+        <div class="work-thumb" style="background-image:url('cafeteria.png'); background-size:cover; background-position:center;"></div>
+        <h4>Cafetería local</h4>
+        <span>Menú, ubicación y contacto</span>
+      </a>
+      <a href="gimnasio.html" class="work-item">
+        <div class="work-thumb" style="background-image:url('gim.png'); background-size:cover; background-position:center;"></div>
+        <h4>Gimnasio / Studio</h4>
+        <span>Programas, horarios y membresías</span>
+      </a>
+      <a href="veterinaria.html" class="work-item">
+        <div class="work-thumb" style="background-image:url('vete.png'); background-size:cover; background-position:center;"></div>
+        <h4>Clínica veterinaria</h4>
+        <span>Servicios y agenda de citas</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="contact">
+    <div>
+      <h2>¿Tienes un proyecto en mente?</h2>
+      <p>Cuéntame qué necesitas y te ayudo a construirlo, paso a paso.</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+     <a href="https://wa.me/50234889651?text=Hola%2C%20me%20interesa%20cotizar%20un%20sitio%20web" target="_blank" class="btn btn-primary">Escribir por WhatsApp</a>
+     <a href="mailto:miguelitopirirc@gmail.com?subject=Cotizaci%C3%B3n%20de%20sitio%20web&body=Hola%2C%20me%20interesa%20cotizar%20un%20sitio%20web.%20Mi%20proyecto%20es..." class="btn btn-outline">Enviar correo</a>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>© 2026 NextWeb — Desarrollo web a la medida</span>
+  <span>Diseño · Código · Ideas · Resultados</span>
+</footer>
+
+</body>
+</html>
